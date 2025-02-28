@@ -1,22 +1,22 @@
+//Code for 206. Reverse Linked List
+//Given the head of a singly linked list, reverse the list, and return the reversed list.
+
 #include<stdio.h>
 #include<stdlib.h>
 /*
-    Definition for singly-linked list.
+Definition for singly-linked list.
 struct ListNode {
-    int val;
-    struct ListNode *next;
- };
- */
+     int val;
+     struct ListNode *next;
+};
+*/
 
 struct ListNode* reverseList(struct ListNode* head) {
-    struct ListNode *atm = head, *prev = NULL, *next;
-    while(atm != NULL) {
-        next = atm->next; 
-        atm->next = prev;
-        prev = atm;
-        atm = next;
+    struct ListNode *atm = head, *prev = NULL, *next; //create different variables, atm(current), prev(previous), next
+    while(atm != NULL) { //as long as atm is not null, go.
+        next = atm->next; //store value before changing
+        atm->next = prev; //point to the next node 
+        prev = atm; //flip value from the previous node to the current
+        atm = next; //move forward to next for loop
     }
-    return prev;
-
-}
-
+    return prev; //return
