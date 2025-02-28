@@ -20,3 +20,4 @@ struct ListNode* reverseList(struct ListNode* head) {
         atm = next; //move forward to next for loop
     }
     return prev; //return
+}
