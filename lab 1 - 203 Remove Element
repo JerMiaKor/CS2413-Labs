@@ -1,5 +1,9 @@
+//Code for 203. Remove Linked List Elements
+//Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val, and return the new head.
+
 #include<stdio.h>
 #include<stdlib.h>
+
 /*
 struct ListNode {
     int val;
@@ -8,22 +12,22 @@ struct ListNode {
 */
 
 struct ListNode* removeElements(struct ListNode* head, int val) {
-    struct ListNode filler;
-    filler.next = head;
-    struct ListNode* prev = &filler;
+    struct ListNode filler; // added to make a filling value to start off (fixes issues where even the head needs removal)
+    filler.next = head; // fil -> to start
+    struct ListNode* prev = &filler; // added for recognizing remaining nodes after values are removed
 
-    while(head) {
-        if(head->val == val) {
-            struct ListNode* temp = head;
-            head = head->next;
-            free(temp);
-            continue;
+    while(head) { // traverse
+        if(head->val == val) { // if = val, then...
+            struct ListNode* temp = head;  // Store deleting value (for memory)
+            head = head->next;  // skip ahead 
+            free(temp);  // Free the removed node (stop memory issues)
+            continue;  // move out to keep removed nodes out
         }
-        prev->next = head;
+        prev->next = head; //goto new valid
         prev = head;
-        head = head->next;
+        head = head->next; // go until end
     }
-    prev->next = NULL;
-    return filler.next;
-}
+    prev->next = NULL; //terminate list to end memory
 
+    return filler.next;//send
+}
