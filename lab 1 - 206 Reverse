@@ -14,6 +14,7 @@ struct ListNode {
 struct ListNode* reverseList(struct ListNode* head) {
     struct ListNode *atm = head, *prev = NULL, *next; //create different variables, atm(current), prev(previous), next
     while(atm != NULL) { //as long as atm is not null, go.
+
         next = atm->next; //store value before changing
         atm->next = prev; //point to the next node 
         prev = atm; //flip value from the previous node to the current
