@@ -1,0 +1,51 @@
+typedef struct {
+    int* data; //values inside
+    int t, cap; //t - top, cap - capacity
+} MyStack;
+
+MyStack* myStackCreate() {
+    MyStack* obj = (MyStack*)malloc(sizeof(MyStack));
+    if (obj == NULL) {
+        return NULL;
+    }
+    obj->cap = 100;
+    obj->data = (int*)malloc(obj->cap * sizeof(int));
+    if (obj->data == NULL) {
+        free(obj);
+        return NULL;
+    }
+    obj->t = -1;
+    return obj;
+}
+
+bool myStackEmpty(MyStack* obj) {
+    return obj->t == -1;
+} //moved bool up
+
+void myStackPush(MyStack* obj, int x) {
+    if (obj->t == obj->cap - 1) {
+        return; //OF
+    }
+    obj->data[++obj->t] = x;
+}
+
+int myStackPop(MyStack* obj) {
+    if (myStackEmpty(obj)) {
+        return -1;
+    }
+    return obj->data[obj->t--];
+}
+
+int myStackTop(MyStack* obj) {
+    if (myStackEmpty(obj)) {
+        return -1;
+    }
+    return obj->data[obj->t];
+}
+
+void myStackFree(MyStack* obj) {
+    if (obj) {
+        free(obj->data);
+        free(obj);
+    }
+}
