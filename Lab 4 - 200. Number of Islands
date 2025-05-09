@@ -13,7 +13,6 @@ void dfschk(char** grid, int i, int j, int rows, int cols) {
     }
 }
 
-
 int numIslands(char** grid, int gridSize, int* gridColSize) {
     if (grid == NULL || gridSize == 0 || gridColSize == NULL)
         return 0;
